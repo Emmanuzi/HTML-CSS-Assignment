@@ -1,0 +1,279 @@
+
+
+/* Utility: hide element on small screens (used in HTML via class hide-mobile) */
+.hide-mobile {
+    display: none;
+}
+
+/*
+  Base page styles
+  - background color for the whole page
+  - remove default body margin
+  - set the font family loaded from Google Fonts in index.html
+*/
+body {
+    background-color: #FFA800;
+    margin: 0;
+    font-family: 'Inter';
+}
+
+/* Wrapper that gives the page overall spacing on small screens */
+.wrap {
+    margin: 2em;
+}
+
+/* Header layout: horizontal space between logo/left and nav on the right */
+header {
+    display: flex;
+    justify-content:space-between;
+}
+
+/*
+  Navigation (mobile slide-in panel)
+  - on mobile the <nav> list is positioned fixed and translated off-screen by default
+  - the `.open` class (toggled by JS) translates it back into view
+  - note: the file contains nested rules (Sass-like) — keep comments only, don't change structure
+*/
+nav ul {
+    background: white;
+    position:fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    margin: 0;
+    list-style: none;
+    width: 40%;
+    text-align: right;
+    padding: 2em;
+    transform: translateX(100%); /* hidden to the right */
+    transition: transform 0.5s ease-in-out;
+
+    /*
+      The block below uses nested syntax (Sass-style). It styles
+      list items and anchor tags inside the mobile menu.
+      Keep the rules as-is so the project's original intent is preserved.
+    */
+    li {
+        margin: 2em 0;
+
+        &:nth-of-type(1) {
+            margin-bottom: 4em;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5rem;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+/* When nav has .open class, slide the menu into view */
+.open {
+    transform: translateX(0%);
+}
+
+/* Basic typography alignment for heading and paragraphs */
+h1, p {
+    text-align: center;
+}
+
+/* Hero heading spacing; the inline image is centered below */
+h1 {
+    margin-top: 3em;
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+/* Paragraph sizing for readable lines in the hero area */
+p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+/* Primary CTA button styles (mobile-first full-width) */
+a.primary-cta {
+    background: #FFFBF3;
+    padding: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: black;
+    border-radius: .3em;
+    margin-top: 3em;
+}
+
+/* Cat illustration container and decorative circles used for visual depth */
+.cat {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    margin-top: 3em;
+
+    /* The cat image is positioned absolutely and horizontally centered */
+    img {
+        width: 70%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* inner/outer circles are centered behind the cat for a layered look */
+    .inner-circle, .outer-circle {
+        position: absolute;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .inner-circle {
+        background: #FFEBC3;
+        width: 300px;
+        height: 300px;
+        z-index: -1;
+    }
+    .outer-circle {
+        background: rgb(201, 173, 121);
+        width: 500px;
+        height: 500px;
+        z-index: -2;
+    }
+}
+
+/*
+  Responsive styles: tablet and up (min-width: 798px)
+  - increase horizontal margins
+  - show desktop-only items and hide mobile-only ones
+  - change nav from fixed panel to inline horizontal list
+*/
+@media (min-width: 798px) {
+    .wrap {
+        margin: 0 4em;
+    }
+
+    .hide-desktop {
+        display: none;
+    }
+
+    .hide-mobile {
+        display: block;
+    }
+
+    /* Header left area: align logo and small links */
+    .header-left {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1em;
+
+        .divider {
+            height: 50px;
+            width: 1px;
+            border-right: 1px solid gray;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 1.2rem;
+        }
+    }
+
+    /* Desktop nav becomes a horizontal list, so undo the fixed panel properties */
+    nav ul {
+        position: unset;
+        background: none;
+        display: flex;
+        gap: 2em;
+        height: auto;
+        width: auto;
+        transform: translateX(0%);
+        
+        li a {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+/*
+  Larger desktop layout tweaks (min-width: 950px)
+  - left-align hero copy and increase sizes for the decorative circles
+  - position the cat container absolutely on the right side
+*/
+@media (min-width: 950px) {
+    h1, p {
+        text-align: left;
+    }
+
+    h1 img {
+        margin: 0;
+    }
+
+    main {
+        width: 50%;
+    }
+
+    .cat {
+        margin-top: 0;
+
+        .inner-circle {
+            width: 500px;
+            height: 500px;
+        }
+        .outer-circle {
+            width: 1000px;
+            height: 1000px;
+        }
+    }
+
+    .cat-container {
+        position: absolute;
+        z-index: -1;
+        width: 50%;
+        top: 20%;
+        right: 0;
+    }
+
+}
+
+/*
+  Extra-large screens (min-width: 1200px)
+  - center the page within a max-width and adjust CTA and cat image sizing
+*/
+@media (min-width: 1200px) {
+
+    .wrap {
+        margin: 0 auto;
+        padding: 0 2em;
+        max-width: 1200px;
+    }
+
+    a.primary-cta {
+        display: inline-block;
+        width: auto;
+        padding: 1em 2em;
+    }
+
+    .cat {
+        position: relative;
+
+        img {
+            max-width: 400px;
+            left: 50%;
+        }
+    }
+}

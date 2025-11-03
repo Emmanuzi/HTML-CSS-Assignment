@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Document metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitty Food</title>
+
+    <!-- Preconnect to Google Fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Import the Inter font family -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Main stylesheet for layout and visual styles -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Site wrapper: contains header, main content and decorative elements -->
+    <div class="wrap">
+        <!-- Top site header with branding and primary navigation -->
+        <header>
+            <div class="header-left">
+                <!-- Logo: links back to the homepage -->
+                <a href="index.html">
+                    <img src="logo.svg" alt="Friskay Logo">
+                </a>
+
+                <!-- Visual divider (hidden on mobile via CSS) -->
+                <div class="divider hide-mobile"></div>
+
+                <!-- A simple text link to Home (hidden on small screens) -->
+                <a href="#" class="home hide-mobile">Home</a>
+            </div>
+
+            <!-- Navigation: shows full menu on desktop, toggled menu on mobile -->
+            <nav>
+                <!-- Menu button visible only on mobile devices (opens the slide-in menu) -->
+                <a href="#" class="menu-open hide-desktop">
+                    <img src="menu.svg" alt="Open menu">
+                </a>
+
+                <!-- Main navigation list. On mobile this becomes a panel that can be opened/closed -->
+                <ul>
+                    <!-- Close button inside the mobile menu (hidden on desktop) -->
+                    <li class="hide-desktop">
+                        <a href="#" class="menu-close">
+                            <img src="close.svg" alt="Close menu">
+                        </a>
+                    </li>
+                    <!-- Navigation links -->
+                    <li><a href="#">Our Food</a></li>
+                    <li><a href="#">Ingredients</a></li>
+                    <li><a href="#">Studies</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main hero area: headline, supporting text and primary call-to-action -->
+        <main>
+            <!-- Headline includes an inline SVG/graphic for emphasis -->
+            <h1>Your cat will go <img src="bonkers.svg" alt="Text that says bonkers"></h1>
+
+            <!-- Subheading: short marketing copy about the product -->
+            <p class="subhead">
+                ..for the world’s best testing cat food, sourced with 
+                only the finest ingredients. Made with love from the 
+                heart of Mississippi.
+            </p>
+
+            <!-- Primary call-to-action button -->
+            <a href="#" class="primary-cta">Get Bonkers</a>
+        </main>
+
+        <!-- Decorative/illustrative area containing the cat graphic and animated circles -->
+        <div class="cat-container">
+            <div class="cat">
+                <!-- Main cat image -->
+                <img src="cat.png" alt="Cat illustration">
+                <!-- Inner and outer circles may be used for visual/animation effects via CSS -->
+                <div class="inner-circle"></div>
+                <div class="outer-circle"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inline script to handle the mobile menu open/close interactions -->
+    <script>
+
+        // Select the navigation list and the mobile menu open/close buttons
+        const menu = document.querySelector('nav ul');
+        const menuBtn = document.querySelector('.menu-open');
+        const closeBtn = document.querySelector('.menu-close');
+
+        // When the menu button is clicked, add the "open" class to show the mobile menu
+        menuBtn.addEventListener('click', () => {
+            menu.classList.add('open')
+        })
+
+        // Clicking the close button removes the "open" class to hide the mobile menu
+        closeBtn.addEventListener('click', () => {
+            menu.classList.remove('open')
+        })
+
+    </script>
+</body>
+</html>
